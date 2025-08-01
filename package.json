@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile:yul": "ts-node scripts/compile-yul.ts"
+    "compile:yul": "ts-node scripts/compile-yul.ts",
+    "safe-tx": "ts-node scripts/safe_tx.ts",
+    "safe-simulate": "ts-node scripts/safe_simulate.ts"
   },
   "keywords": [],
   "author": "",
