@@ -35,21 +35,21 @@ const config: HardhatUserConfig = {
       ],
     },
 
-    // ah_westend: {
-    //   polkavm: true,
-    //   url: "https://westend-asset-hub-eth-rpc.polkadot.io",
-    //   accounts: [
-    //     process.env.AH_TEST_KEY as string,
-    //   ],
-    // },
+    ah_westend: {
+      polkavm: true,
+      url: "https://westend-asset-hub-eth-rpc.polkadot.io",
+      accounts: [
+        process.env.LOCAL_PRIV_KEY as string,
+      ],
+    },
 
-    // pah_paseo: {
-    //   polkavm: true,
-    //   url: "https://testnet-passet-hub-eth-rpc.polkadot.io",
-    //   accounts: [
-    //     process.env.AH_TEST_KEY as string,
-    //   ],
-    // }
+    pah_paseo: {
+      polkavm: true,
+      url: "https://testnet-passet-hub-eth-rpc.polkadot.io",
+      accounts: [
+        process.env.LOCAL_PRIV_KEY as string,
+      ],
+    }
   }
 };
 
