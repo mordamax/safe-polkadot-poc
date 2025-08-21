@@ -1,0 +1,8 @@
+onlyBuiltDependencies:
+  - cpu-features
+  - esbuild
+  - fs-xattr
+  - keccak
+  - protobufjs
+  - secp256k1
+  - ssh2

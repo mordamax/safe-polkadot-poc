@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile:yul": "ts-node scripts/compile-yul.ts",
-    "safe-tx": "ts-node scripts/safe_tx.ts",
-    "safe-simulate": "ts-node scripts/safe_simulate.ts"
+    "postinstall": "pnpm run download-binaries && pnpm run cp:env",
+    "test": "hardhat test",
+    "cp:env": "bash -e .env 2>/dev/null || cp .env.example .env",
+    "run-node": "bin/revive-dev-node --dev --port 8000 & bin/eth-rpc --dev",
+    "deploy:all": "pnpm run run-node & sleep 10 && hardhat run scripts/deployAll.ts --network local && pkill -f \"revive-dev-node|eth-rpc\"",
+    "compile:yul": "ts-node tasks/compile-yul.ts",
+    "safe-tx": "ts-node scripts/safeTx.ts",
+    "safe-simulate": "ts-node scripts/simulate.ts",
+    "download-binaries": "bash download-binaries.sh"
   },
   "keywords": [],
   "author": "",
@@ -37,9 +42,11 @@
     "solidity-coverage": "^0.8.0",
     "ts-node": ">=8.0.0",
     "typechain": "^8.3.0",
-    "typescript": ">=4.5.0"
+    "typescript": ">=4.5.0",
+    "@parity/resolc": "0.3.0"
   },
   "dependencies": {
-    "@parity/hardhat-polkadot": "0.1.5"
-  }
+    "@parity/hardhat-polkadot": "0.1.11-pre1"
+  },
+  "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad"
 }

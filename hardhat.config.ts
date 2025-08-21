@@ -11,21 +11,18 @@ dotenv.config();
 const config: HardhatUserConfig = {
   solidity: "0.8.30",
   resolc: {
-    compilerSource: "binary",
-    settings: {
-      compilerPath: "~/.cargo/bin/resolc-0.1.0-dev.16",
-    }
+    compilerSource: "npm",
   },
   networks: {
     hardhat: {
       polkavm: true,
       nodeConfig: {
-        nodeBinaryPath: '../../../code/polkadot-sdk/target/debug/substrate-node',
+        nodeBinaryPath: './bin/eth-rpc',
         rpcPort: 8000,
         dev: true,
       },
       adapterConfig: {
-        adapterBinaryPath: '../../../code/polkadot-sdk/target/debug/eth-rpc',
+        adapterBinaryPath: './bin/eth-rpc',
         dev: true,
       },
     },
@@ -38,21 +35,21 @@ const config: HardhatUserConfig = {
       ],
     },
 
-    ah_westend: {
-      polkavm: true,
-      url: "https://westend-asset-hub-eth-rpc.polkadot.io",
-      accounts: [
-        process.env.AH_TEST_KEY as string,
-      ],
-    },
+    // ah_westend: {
+    //   polkavm: true,
+    //   url: "https://westend-asset-hub-eth-rpc.polkadot.io",
+    //   accounts: [
+    //     process.env.AH_TEST_KEY as string,
+    //   ],
+    // },
 
-    pah_paseo: {
-      polkavm: true,
-      url: "https://testnet-passet-hub-eth-rpc.polkadot.io",
-      accounts: [
-        process.env.AH_TEST_KEY as string,
-      ],
-    }
+    // pah_paseo: {
+    //   polkavm: true,
+    //   url: "https://testnet-passet-hub-eth-rpc.polkadot.io",
+    //   accounts: [
+    //     process.env.AH_TEST_KEY as string,
+    //   ],
+    // }
   }
 };
 
