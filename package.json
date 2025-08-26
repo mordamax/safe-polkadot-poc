@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "pnpm run download-binaries && pnpm run cp:env",
-    "test": "hardhat test",
+    "test": "hardhat test --network hardhat --show-stack-traces",
     "cp:env": "bash -e .env 2>/dev/null || cp .env.example .env",
     "run-node": "bin/revive-dev-node --dev --port 8000 & bin/eth-rpc --dev",
     "deploy:all": "pnpm run run-node & sleep 10 && hardhat run scripts/deployAll.ts --network local && pkill -f \"revive-dev-node|eth-rpc\"",
