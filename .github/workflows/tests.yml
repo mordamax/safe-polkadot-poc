@@ -40,5 +40,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+
       - name: Compile Yul
         run: pnpm compile:yul
