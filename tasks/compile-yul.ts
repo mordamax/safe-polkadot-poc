@@ -15,8 +15,8 @@ interface CompilerConfig {
 }
 
 const defaultConfig: CompilerConfig = {
-	resolcPath: process.env.RESOLC_PATH || '~/.cargo/bin/resolc-0.1.0-dev.16',
-	solcPath: process.env.SOLC_PATH || '/opt/homebrew/bin/solc',
+	resolcPath: process.env.RESOLC_PATH || "../node_modules/.bin/resolc",
+	solcPath: process.env.SOLC_PATH || '../node_modules/.bin/solcjs',
 	inputFile: 'contracts/deterministic-deployment-proxy.yul',
 	outputDir: 'output',
 	outputFile: 'bytecode.txt'
