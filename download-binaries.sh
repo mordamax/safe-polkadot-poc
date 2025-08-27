@@ -5,6 +5,13 @@
 OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 ARCH=$(uname -m | tr '[:upper:]' '[:lower:]')
 
+# Map architecture names to match binary naming convention
+if [ "$ARCH" = "x86_64" ]; then
+  ARCH="x64"
+elif [ "$ARCH" = "aarch64" ]; then
+  ARCH="arm64"
+fi
+
 REVIVE_NODE=revive-dev-node-${OS}-${ARCH}
 ETH_RPC=eth-rpc-${OS}-${ARCH}
 RESOLC_BIN=""
@@ -43,16 +50,16 @@ else
 fi
 
 if [ "$CURRENT_RESOLC_CHECKSUM" != "$NEW_RESOLC_CHECKSUM" ]; then
-if [ "$OS" == "darwin" ]; then
+  if [ "$OS" = "darwin" ]; then
     RESOLC_BIN="universal-apple-darwin"
-  elif [ "$OS" == "linux" ]; then
+  elif [ "$OS" = "linux" ]; then
     RESOLC_BIN="x86_64-unknown-linux-musl"
   else
     echo "Unsupported OS: $OS"
     exit 1
   fi
 
-  if [[ "$OS" == "linux" && "$ARCH" != "x86_64" ]]; then
+  if [ "$OS" = "linux" ] && [ "$ARCH" != "x64" ]; then
     echo "Unsupported architecture: $ARCH for linux"
     exit 1
   fi
@@ -67,3 +74,5 @@ rm /tmp/node-${NODES_VERSION}-checksums.txt
 rm /tmp/resolc-${RESOLC_VERSION}-checksums.txt
 
 chmod -R 755 ${BIN_DIR}
+
+ls -lsa ${BIN_DIR}
